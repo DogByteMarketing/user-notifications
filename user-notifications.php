@@ -3,7 +3,7 @@
 /**
  * Plugin Name: User Notifications
  * Description: Send notifications to your users.
- * Version: 1.0.1
+ * Version: 1.0.2
  * Requires at least: 6.5
  * Requires PHP: 7.4
  * Author: Dog Byte Marketing

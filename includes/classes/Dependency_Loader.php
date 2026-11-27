@@ -54,7 +54,7 @@ class Dependency_Loader {
    * @return void
    */
   public function load_backend() {
-    $backend_loader = new Backend_Loader();
+    $backend_loader = new Backend_Loader($this->plugin, $this->version);
     $backend_loader->init();
   }
 

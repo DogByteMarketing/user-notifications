@@ -2,6 +2,8 @@
 
 namespace DogByteMarketing\User_Notifications\Frontend;
 
+use DogByteMarketing\User_Notifications\Utils;
+
 class Shortcodes {
   
   /**
@@ -62,16 +64,17 @@ class Shortcodes {
    * @return void
    */
   private function render_notifications($atts) {
-    $class = isset($atts['class']) ? sanitize_text_field($atts['class']) : '';
+    $current_user_id    = get_current_user_id();
+    $notification_count = Utils::get_user_notification_count($current_user_id);
+    $class              = isset($atts['class']) ? sanitize_text_field($atts['class']) : '';
 
-    if (!$class) {
-      // wp_enqueue_style('font-awesome', plugins_url('/css/font-awesome.min.css', __FILE__), array(), filemtime(plugin_dir_path(dirname(__FILE__)) . dirname(plugin_basename(__FILE__))  . '/css/font-awesome.min.css'));
-    }
     ?>
     <a href="javascript:void(0)" class="notification-container">
-      <i class="<?php echo $class ? esc_attr($class) : 'fa fa-bell'; ?> notification-icon" aria-hidden="true"></i>
+      <i class="<?php echo $class ? esc_attr($class) : 'bi bi-bell-fill'; ?> notification-icon" aria-hidden="true"></i>
       <!-- This is coming soon -->
-      <!-- <span class="notification-bubble">12</span> -->
+      <?php if ($notification_count > 0) : ?>
+        <span class="notification-bubble"><?php echo $notification_count; ?></span>
+      <?php endif; ?>
     </a>
     <?php
   }

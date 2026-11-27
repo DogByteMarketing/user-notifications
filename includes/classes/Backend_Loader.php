@@ -3,8 +3,34 @@
 namespace DogByteMarketing\User_Notifications;
 
 use DogByteMarketing\User_Notifications\Backend\Admin;
+use DogByteMarketing\User_Notifications\Backend\Enqueue;
+use DogByteMarketing\User_Notifications\Frontend\Custom_Post_Type;
 
 class Backend_Loader {
+
+  /**
+	 * Full path and filename of plugin.
+	 *
+	 * @var string $version Full path and filename of plugin.
+	 */
+  private $plugin;
+
+	/**
+	 * The version of this plugin.
+	 *
+	 * @var   string $version The current version of this plugin.
+	 */
+	private $version;
+  
+  /**
+   * __construct
+   *
+   * @return void
+   */
+  public function __construct($plugin, $version) {
+    $this->plugin  = $plugin;
+    $this->version = $version;
+  }
   
   /**
    * Init
@@ -12,7 +38,19 @@ class Backend_Loader {
    * @return void
    */
   public function init() {
+    $this->load_enqueue();
     $this->load_admin();
+    $this->load_custom_post_type();
+  }
+  
+  /**
+   * Load UI
+   *
+   * @return void
+   */
+  public function load_enqueue() {
+    $gui = new Enqueue($this->plugin, $this->version);
+    $gui->init();
   }
   
   /**
@@ -23,6 +61,16 @@ class Backend_Loader {
   public function load_admin() {
     $admin = new Admin();
     $admin->init();
+  }
+  
+  /**
+   * Load Custom Post Type
+   *
+   * @return void
+   */
+  public function load_custom_post_type() {
+    $custom_post_type = new Custom_Post_Type();
+    $custom_post_type->init();
   }
 
 }

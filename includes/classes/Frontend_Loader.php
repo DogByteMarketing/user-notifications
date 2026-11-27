@@ -4,7 +4,7 @@ namespace DogByteMarketing\User_Notifications;
 
 use DogByteMarketing\User_Notifications\Frontend\Enqueue;
 use DogByteMarketing\User_Notifications\Frontend\UI;
-use DogByteMarketing\User_Notifications\Frontend\Custom_Post_Type;
+use DogByteMarketing\User_Notifications\Frontend\WooCommerce;
 use DogByteMarketing\User_Notifications\Frontend\Shortcodes;
 
 class Frontend_Loader {
@@ -39,10 +39,14 @@ class Frontend_Loader {
    * @return void
    */
   public function init() {
-    $this->load_enqueue();
-    $this->load_ui();
-    $this->load_custom_post_type();
-    $this->load_shortcodes();
+    $enabled = Utils::get_option('general', 'enabled');
+
+    if ($enabled) {
+      $this->load_enqueue();
+      $this->load_ui();
+      $this->load_woocommerce();
+      $this->load_shortcodes();
+    }
   }
   
   /**
@@ -66,13 +70,13 @@ class Frontend_Loader {
   }
   
   /**
-   * Load Custom Post Type
+   * Load WooCommerce
    *
    * @return void
    */
-  public function load_custom_post_type() {
-    $custom_post_type = new Custom_Post_Type();
-    $custom_post_type->init();
+  public function load_woocommerce() {
+    $woocommerce = new WooCommerce();
+    $woocommerce->init();
   }
   
   /**
