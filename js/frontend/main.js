@@ -1,6 +1,8 @@
 jQuery(document).ready(function ($) {
 
-  let markingRead = false;
+  const { __, _x, _n, _nx } = wp.i18n;
+  let disable_no_scroll     = user_notifications_object.disable_no_scroll;
+  let markingRead           = false;
 
   toggleNotifications();
   markRead();
@@ -9,7 +11,10 @@ jQuery(document).ready(function ($) {
     $(".notification-container").on("click", function(e) {
       e.preventDefault();
 
-      $("html").addClass("no-scroll");
+      if (!disable_no_scroll) {
+        $("html").addClass("no-scroll");
+      }
+
       $(".notification-sidebar-container").show();
     });
 
@@ -17,6 +22,7 @@ jQuery(document).ready(function ($) {
       e.preventDefault();
 
       $("html").removeClass("no-scroll");
+
       $(".notification-sidebar-container").hide();
     });
 
@@ -54,19 +60,20 @@ jQuery(document).ready(function ($) {
         nonce: nonce
       }, function(response) {
         $("html").removeClass("no-scroll");
+
         $(".notification-sidebar-container").hide();
         $('.notification-bubble').remove();
       }).fail(function(xhr, status, error) {
         let response = JSON.parse(xhr.responseText);
         markingRead = false;
 
-        $(".read-notifications").html(`MARK ALL READ`);
+        $(".read-notifications").html(__('MARK ALL READ', 'user-notifications'));
 
-        alert(response.data ? response.data.message : 'Unknown error');
+        alert(response.data ? response.data.message : __('Unknown error', 'user-notifications'));
       }).done(function() {
         markingRead = false;
 
-        $(".read-notifications").html(`MARK ALL READ`);
+        $(".read-notifications").html(__('MARK ALL READ', 'user-notifications'));
       });
     });
   }

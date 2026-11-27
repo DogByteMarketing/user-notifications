@@ -36,6 +36,7 @@ class Dependency_Loader {
   public function init() {
     $this->load_frontend();
     $this->load_backend();
+    $this->load_translations();
   }
   
   /**
@@ -55,6 +56,16 @@ class Dependency_Loader {
    */
   public function load_backend() {
     $backend_loader = new Backend_Loader($this->plugin, $this->version);
+    $backend_loader->init();
+  }
+  
+  /**
+   * Load Translations
+   *
+   * @return void
+   */
+  public function load_translations() {
+    $backend_loader = new Translations_Loader($this->plugin, $this->version);
     $backend_loader->init();
   }
 

@@ -3,12 +3,13 @@
 /**
  * Plugin Name: User Notifications
  * Description: Send notifications to your users.
- * Version: 1.0.3
+ * Version: 1.0.4
  * Requires at least: 6.5
  * Requires PHP: 7.4
  * Author: Dog Byte Marketing
  * Author URI: https://www.dogbytemarketing.com
  * Plugin URI: https://www.dogbytemarketing.com/contact/
+ * Text Domain: user-notifications
  * License: GPL3
  * License URI: https://www.gnu.org/licenses/gpl-3.0.html
  */

@@ -1,0 +1,211 @@
+# Copyright (C) 2025 Dog Byte Marketing
+# This file is distributed under the GPL3.
+msgid ""
+msgstr ""
+"Project-Id-Version: User Notifications 1.0.4\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/user-notifications\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2025-03-08T10:09:14+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.10.0\n"
+"X-Domain: user-notifications\n"
+
+#. Plugin Name of the plugin
+#: user-notifications\user-notifications.php
+msgid "User Notifications"
+msgstr ""
+
+#. Plugin URI of the plugin
+#: user-notifications\user-notifications.php
+msgid "https://www.dogbytemarketing.com/contact/"
+msgstr ""
+
+#. Description of the plugin
+#: user-notifications\user-notifications.php
+msgid "Send notifications to your users."
+msgstr ""
+
+#. Author of the plugin
+#: user-notifications\user-notifications.php
+msgid "Dog Byte Marketing"
+msgstr ""
+
+#. Author URI of the plugin
+#: user-notifications\user-notifications.php
+msgid "https://www.dogbytemarketing.com"
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:25
+msgid "User Notification Settings"
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:25
+msgid "Settings"
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:73
+msgid "Enabled?"
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:81
+msgid "Disable No Scroll?"
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:89
+msgid "BootStrap Icons"
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:97
+msgid "Order Notifications"
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:105
+msgid "Read Tracking"
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:113
+msgid "User Targeting"
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:129
+#: includes/classes/Backend/Admin.php:143
+#: includes/classes/Backend/Admin.php:158
+#: includes/classes/Backend/Admin.php:173
+#: includes/classes/Backend/Admin.php:188
+#: includes/classes/Backend/Admin.php:203
+msgid "Yes"
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:145
+msgid "This will disable adding the no-scroll class after the notification icon is clicked as this could conflict with some themes."
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:160
+msgid "If you use another icon set or already use BootStrap Icons, disable this option."
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:175
+msgid "Send notifications on order status changes."
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:190
+msgid "This allows users to mark notifications as read. This will add the notification IDs to a list of IDs that have been read in the user's meta."
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:205
+msgid "This will allow you to send notifications to specific users. This processes existing user data to fetch their ID and username."
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:222
+msgid "User Notifications Settings"
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:232
+msgid "General"
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:238
+msgid "WooCommerce"
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:244
+msgid "Privacy"
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:263
+msgid "These options collect data from guests/users. Ensure you are in compliance with data protection regulations before activation. Proceed at your own risk."
+msgstr ""
+
+#: includes/classes/Frontend/Custom_Post_Type.php:24
+#: includes/classes/Frontend/Custom_Post_Type.php:35
+msgid "Notifications"
+msgstr ""
+
+#: includes/classes/Frontend/Custom_Post_Type.php:25
+#: includes/classes/Frontend/Custom_Post_Type.php:36
+msgid "Notification"
+msgstr ""
+
+#: includes/classes/Frontend/Custom_Post_Type.php:26
+#: includes/classes/Frontend/Custom_Post_Type.php:27
+msgid "Add New Notification"
+msgstr ""
+
+#: includes/classes/Frontend/Custom_Post_Type.php:28
+msgid "Edit Notification"
+msgstr ""
+
+#: includes/classes/Frontend/Custom_Post_Type.php:29
+msgid "New Notification"
+msgstr ""
+
+#: includes/classes/Frontend/Custom_Post_Type.php:30
+msgid "View Notification"
+msgstr ""
+
+#: includes/classes/Frontend/Custom_Post_Type.php:31
+msgid "Search Notifications"
+msgstr ""
+
+#: includes/classes/Frontend/Custom_Post_Type.php:32
+msgid "No notifications found"
+msgstr ""
+
+#: includes/classes/Frontend/Custom_Post_Type.php:33
+msgid "No notifications found in Trash"
+msgstr ""
+
+#: includes/classes/Frontend/Custom_Post_Type.php:34
+msgid "All Notifications"
+msgstr ""
+
+#: includes/classes/Frontend/UI.php:33
+#: js/frontend/main.js:70
+#: js/frontend/main.js:76
+msgid "MARK ALL READ"
+msgstr ""
+
+#: includes/classes/Frontend/UI.php:89
+msgid "You have no notifications"
+msgstr ""
+
+#: includes/classes/Frontend/UI.php:108
+msgid "Authentication failed."
+msgstr ""
+
+#: includes/classes/Frontend/UI.php:115
+msgid "Invalid user or password."
+msgstr ""
+
+#: includes/classes/Frontend/UI.php:120
+msgid "Your notifications have been marked as read."
+msgstr ""
+
+#. Translators: %d is the order ID.
+#: includes/classes/Frontend/WooCommerce.php:67
+msgid "Order #%d has shipped"
+msgstr ""
+
+#: includes/classes/Utils.php:54
+msgid "Success"
+msgstr ""
+
+#: includes/classes/Utils.php:71
+msgid "Error"
+msgstr ""
+
+#: js/backend/settings.js:44
+msgid "You need to enable User Targeting under the Privacy section before enabling Order Notifications."
+msgstr ""
+
+#: js/backend/settings.js:62
+msgid "Order Notifications requires User Targeting."
+msgstr ""
+
+#: js/frontend/main.js:72
+msgid "Unknown error"
+msgstr ""

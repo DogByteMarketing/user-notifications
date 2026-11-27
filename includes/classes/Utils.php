@@ -5,9 +5,9 @@ namespace DogByteMarketing\User_Notifications;
 class Utils {
 
   /**
-   * Get maintenance mode options
+   * Get user notifications options
    *
-   * @return array $options The maintenance mode options
+   * @return array $options The user notifications options
    */
   public static function get_options() {
     $options = get_option('user_notifications_settings_dogbytemarketing');
@@ -16,7 +16,7 @@ class Utils {
   }
   
   /**
-   * Get maintenance mode option from options array
+   * Get user notifications option from options array
    *
    * @param  string $section The section to retrieve from the options
    * @param  string $option  The option to retrieve from the section
@@ -51,7 +51,7 @@ class Utils {
    * @return void
    */
   public static function send_success($message, $code = 200) {
-    $message = $message ? sanitize_text_field($message) : "Success";
+    $message = $message ? sanitize_text_field($message) : __('Success', 'user-notifications');
     $code    = is_numeric($code) ? (int) $code : 200;
 
     wp_send_json_success(array(
@@ -68,7 +68,7 @@ class Utils {
    * @return void
    */
   public static function send_error($message, $code = 400) {
-    $message = $message ? sanitize_text_field($message) : "Error";
+    $message = $message ? sanitize_text_field($message) : __('Error', 'user-notifications');
     $code    = is_numeric($code) ? (int) $code : 400;
 
     wp_send_json_error(array(

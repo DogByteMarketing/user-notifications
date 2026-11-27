@@ -39,6 +39,10 @@
   z-index: 99999;
 }
 
+.notification-sidebar-container .no-notifications {
+  text-align: center;
+}
+
 .notification-sidebar-container .notification-sidebar {
   padding: 20px 0 20px 20px;
   font-size: 16px;

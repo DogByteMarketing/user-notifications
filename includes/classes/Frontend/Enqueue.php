@@ -70,15 +70,17 @@ class Enqueue {
    * @return void
    */
   private function enqueue_scripts() {
-    wp_enqueue_script('user-notifications', plugins_url('/js/frontend/main.js', $this->plugin), array('jquery'), $this->version, true);
+    wp_enqueue_script('user-notifications', plugins_url('/js/frontend/main.js', $this->plugin), array('jquery', 'wp-i18n'), $this->version, true);
     wp_localize_script(
       'user-notifications',
       'user_notifications_object',
       array(
-        'ajax_url' => admin_url('admin-ajax.php'),
-        'nonce'    => wp_create_nonce('user-notifications-nonce'),
+        'ajax_url'          => admin_url('admin-ajax.php'),
+        'nonce'             => wp_create_nonce('user-notifications-nonce'),
+        'disable_no_scroll' => Utils::get_option('general', 'disable_no_scroll'),
       )
     );
+    wp_set_script_translations('user-notifications', 'user-notifications', plugin_dir_path($this->plugin) . '/languages/');
   }
   
 }

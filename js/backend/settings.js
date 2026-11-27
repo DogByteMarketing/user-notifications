@@ -1,5 +1,7 @@
 jQuery(document).ready(function ($) {
 
+  const { __, _x, _n, _nx } = wp.i18n;
+
   initTabs();
   privacyChecks();
 
@@ -31,18 +33,21 @@ jQuery(document).ready(function ($) {
 
   function privacyChecks() {
     $(document).on('change', '#order_notifications', function () {
-      if ($(this).is(':checked')) { // When "Order Notifications" is enabled
-        var userTargetingEnabled = $('#user_targeting').is(':checked'); // Check if "User Targeting" is enabled
-        
+      // When "Order Notifications" is enabled
+      if ($(this).is(':checked')) {
+        var userTargetingEnabled = $('#user_targeting').is(':checked');
+
+        // Check if "User Targeting" is enabled
         if (!userTargetingEnabled) {
           Swal.fire({
             title: "Error!",
-            text: "You need to enable User Targeting under the Privacy section before enabling Order Notifications.",
+            text: __('You need to enable User Targeting under the Privacy section before enabling Order Notifications.', 'user-notifications'),
             icon: "error",
             confirmButtonColor: "#DD3544",
           });
 
-          $(this).prop('checked', false); // Reset the checkbox
+          // Reset the checkbox
+          $(this).prop('checked', false);
         }
       }
     });
@@ -54,7 +59,7 @@ jQuery(document).ready(function ($) {
         if (orderNotificationsEnabled) {
           Swal.fire({
             title: "Error!",
-            text: "Order Notifications requires User Targeting.",
+            text: __('Order Notifications requires User Targeting.', 'user-notifications'),
             icon: "error",
             confirmButtonColor: "#DD3544",
           });

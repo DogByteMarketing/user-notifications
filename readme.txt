@@ -2,7 +2,7 @@
 Contributors: dogbytemarketing
 Tags: notifications, alerts, marketing, user engagement, woocommerce
 Tested up to: 6.7
-Stable tag: 1.0.3
+Stable tag: 1.0.4
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -11,7 +11,7 @@ Easily display a notification bell with a badge count in your WordPress menu to 
 
 == Description ==
 
-User Notifications lets you seamlessly inform WordPress & WooCommerce users about updates, sales, and more via the site navigation menu. You can add a notification menu easily by using the [notifications_dogbytemarketing] shortcode to inject a notification bell into your menu. The bell displays a badge when new notifications are available, ensuring users never miss an update. If you use something other than BootStrap icons, you can do [notifications_dogbytemarketing class="your-icon-class"] to use your own icons.
+User Notifications lets you seamlessly inform WordPress & WooCommerce users about updates, sales, and more via the site navigation menu. You can add a notification menu easily by using the [notifications_dogbytemarketing] shortcode to inject a notification bell into your menu. The bell displays a badge when new notifications are available, ensuring users never miss an update. If you use something other than BootStrap icons, you can do [notifications_dogbytemarketing class="your-icon-class"] to use your own icons. You can also use the "class_container" attribute to add additional classes to the notification-container element.
 
 This plugin is ideal for websites and WooCommerce stores looking to improve user engagement and streamline notification delivery.
 
@@ -62,6 +62,13 @@ This plugin collects and stores certain data on your server to ensure proper fun
 
 
 == Changelog ==
+
+= 1.0.4 =
+* Added: Translations
+* Added: Shortcode attribute "class_container" in order to add additional classes to the notification-container
+* Added: Toggle for disabling automatic adding of "no-scroll" class on click of notification icon as it can conflict with some themes
+* Bugfix: Notification bar empty when no notifications
+* Bugfix: Settings need to be saved twice after initial install
 
 = 1.0.3 =
 * Added: Security enhancements.

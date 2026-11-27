@@ -25,7 +25,8 @@ class Shortcodes {
   public function add_notifications_shortcode($atts) {
 		$atts = shortcode_atts(
 			array(
-				'class' => '',
+				'class'           => '',
+				'class_container' => '',
 			),
 			$atts,
 			'notifications_dogbytemarketing'
@@ -67,9 +68,10 @@ class Shortcodes {
     $current_user_id    = get_current_user_id();
     $notification_count = Utils::get_user_notification_count($current_user_id);
     $class              = isset($atts['class']) ? sanitize_text_field($atts['class']) : '';
+    $class_container    = isset($atts['class_container']) ? sanitize_text_field($atts['class_container']) : '';
 
     ?>
-    <a href="javascript:void(0)" class="notification-container">
+    <a href="javascript:void(0)" class="<?php echo $class_container ? esc_attr($class_container) : ''; ?> notification-container">
       <i class="<?php echo $class ? esc_attr($class) : 'bi bi-bell-fill'; ?> notification-icon" aria-hidden="true"></i>
       <!-- This is coming soon -->
       <?php if ($notification_count > 0) : ?>

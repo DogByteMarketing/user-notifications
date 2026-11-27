@@ -56,7 +56,7 @@ class Enqueue {
    * @return void
    */
   private function enqueue_styles() {
-    wp_enqueue_style('maintenance-mode-settings', plugins_url('/css/backend/settings.css', $this->plugin), array(), $this->version);
+    wp_enqueue_style('user-notifications-settings', plugins_url('/css/backend/settings.css', $this->plugin), array(), $this->version);
     wp_enqueue_style('bootstrap', plugins_url('/css/backend/bootstrap-wrapper.min.css', $this->plugin), array(), $this->version);
     wp_enqueue_style('bootstrap-icons', plugins_url('/css/bootstrap-icons.min.css', $this->plugin), array(), $this->version);
     wp_enqueue_style('sweetalert2', plugins_url('/css/backend/sweetalert2.min.css', $this->plugin), array(), $this->version);
@@ -68,7 +68,8 @@ class Enqueue {
    * @return void
    */
   private function enqueue_scripts() {
-    wp_enqueue_script('maintenance-mode-settings', plugins_url('/js/backend/settings.js', $this->plugin), array('jquery', 'wp-color-picker'), $this->version, true);
+    wp_enqueue_script('user-notifications-settings', plugins_url('/js/backend/settings.js', $this->plugin), array('jquery', 'wp-color-picker', 'wp-i18n'), $this->version, true);
+    wp_set_script_translations('user-notifications-settings', 'user-notifications', plugin_dir_path($this->plugin) . '/languages/');
     wp_enqueue_script('bootstrap', plugins_url('/js/backend/bootstrap.min.js', $this->plugin), array('jquery', 'wp-color-picker'), $this->version, true);
     wp_enqueue_script('sweetalert2', plugins_url('/js/backend/sweetalert2.all.min.js', $this->plugin), array('jquery'), $this->version, true);
   }

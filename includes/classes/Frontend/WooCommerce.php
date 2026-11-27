@@ -62,8 +62,9 @@ class WooCommerce {
       return;
     }
 
+    // Translators: %d is the order ID.
     $notification_post = [
-      'post_title'   => sprintf('Order #%d has shipped', $order_id),
+      'post_title'   => sprintf(__('Order #%d has shipped', 'user-notifications'), $order_id),
       'post_content' => '',
       'post_status'  => 'publish',
       'post_type'    => 'user_notification',
