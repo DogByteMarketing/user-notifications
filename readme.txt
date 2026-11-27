@@ -2,7 +2,7 @@
 Contributors: dogbytemarketing
 Tags: notifications, alerts, marketing, user engagement, woocommerce
 Tested up to: 6.7
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -55,6 +55,10 @@ This plugin collects and stores certain data on your server to ensure proper fun
 
 
 == Changelog ==
+
+= 1.0.1 =
+* Bugfix: Notifications not showing
+* Optimized: Code base for ease of extending in the future
 
 = 1.0.0 =
 * Initial Release
