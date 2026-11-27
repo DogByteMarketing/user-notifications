@@ -97,7 +97,9 @@ class UI {
    */
   public function mark_notifications_read() {
     // Ensure it's a valid request with nonce verification
-    if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'user-notifications-nonce')) {
+    $nonce = isset($_POST['nonce']) ? sanitize_text_field(wp_unslash($_POST['nonce'])) : '';
+
+    if (!wp_verify_nonce($nonce, 'user-notifications-nonce')) {
       Utils::send_error('Authentication failed.', 401);
     }
 

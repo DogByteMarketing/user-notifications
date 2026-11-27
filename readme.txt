@@ -2,7 +2,7 @@
 Contributors: dogbytemarketing
 Tags: notifications, alerts, marketing, user engagement, woocommerce
 Tested up to: 6.7
-Stable tag: 1.0.2
+Stable tag: 1.0.3
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -62,6 +62,10 @@ This plugin collects and stores certain data on your server to ensure proper fun
 
 
 == Changelog ==
+
+= 1.0.3 =
+* Added: Security enhancements.
+* Bugfix: When marking notifications as read, if there's an error it would be stuck on loading icon.
 
 = 1.0.2 =
 * Added: Settings to Notifications admin menu

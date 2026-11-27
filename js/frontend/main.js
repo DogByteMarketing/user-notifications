@@ -58,6 +58,9 @@ jQuery(document).ready(function ($) {
         $('.notification-bubble').remove();
       }).fail(function(xhr, status, error) {
         let response = JSON.parse(xhr.responseText);
+        markingRead = false;
+
+        $(".read-notifications").html(`MARK ALL READ`);
 
         alert(response.data ? response.data.message : 'Unknown error');
       }).done(function() {

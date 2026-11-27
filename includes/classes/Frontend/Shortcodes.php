@@ -73,7 +73,7 @@ class Shortcodes {
       <i class="<?php echo $class ? esc_attr($class) : 'bi bi-bell-fill'; ?> notification-icon" aria-hidden="true"></i>
       <!-- This is coming soon -->
       <?php if ($notification_count > 0) : ?>
-        <span class="notification-bubble"><?php echo $notification_count; ?></span>
+        <span class="notification-bubble"><?php echo esc_html($notification_count); ?></span>
       <?php endif; ?>
     </a>
     <?php
