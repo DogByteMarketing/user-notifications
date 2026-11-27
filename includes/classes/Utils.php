@@ -133,6 +133,27 @@ class Utils {
   }
 
   /**
+   * Store one notification as read for a user.
+   *
+   * @param  int $current_user_id
+   * @param  int $notification_id
+   * @return void
+   */
+  public static function mark_user_notification_read($current_user_id, $notification_id) {
+    $stored          = get_user_meta($current_user_id, '_read_notifications', true);
+    $read            = is_array($stored) ? array_map('intval', $stored) : array();
+    $notification_id = (int) $notification_id;
+
+    if (in_array($notification_id, $read, true)) {
+      return;
+    }
+
+    $read[] = $notification_id;
+
+    update_user_meta($current_user_id, '_read_notifications', $read);
+  }
+
+  /**
    * get_notification_count
    *
    * @param  int $current_user_id
@@ -161,6 +182,52 @@ class Utils {
     }
 
     return (int) $notification_count;
+  }
+
+  /**
+   * Short relative time for a notification row.
+   *
+   * @param  int $timestamp Unix time.
+   * @return string
+   */
+  public static function time_ago($timestamp) {
+    $timestamp = (int) $timestamp;
+
+    if (!$timestamp) {
+      return '';
+    }
+
+    $diff = time() - $timestamp;
+
+    if ($diff < 5 * MINUTE_IN_SECONDS) {
+      return __('Just now', 'user-notifications');
+    }
+
+    if ($diff < HOUR_IN_SECONDS) {
+      $minutes = (int) max(1, floor($diff / MINUTE_IN_SECONDS));
+
+      return sprintf(
+        /* translators: %d: number of minutes */
+        _n('%d minute ago', '%d minutes ago', $minutes, 'user-notifications'),
+        $minutes
+      );
+    }
+
+    if ($diff < DAY_IN_SECONDS) {
+      $hours = (int) max(1, floor($diff / HOUR_IN_SECONDS));
+
+      return sprintf(
+        /* translators: %d: number of hours */
+        _n('%d hour ago', '%d hours ago', $hours, 'user-notifications'),
+        $hours
+      );
+    }
+
+    if ($diff < 2 * DAY_IN_SECONDS) {
+      return __('Yesterday', 'user-notifications');
+    }
+
+    return wp_date(get_option('date_format'), $timestamp);
   }
 
 }

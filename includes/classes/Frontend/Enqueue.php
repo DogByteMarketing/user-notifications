@@ -57,10 +57,10 @@ class Enqueue {
   private function enqueue_styles() {
     $bootstrap_icons = Utils::get_option('general', 'bootstrap_icons');
     
-		wp_enqueue_style('user-notifications', plugins_url('/css/frontend/style.css', $this->plugin), array(), $this->version);
+		wp_enqueue_style('user-notifications', plugins_url('/assets/css/frontend/style.css', $this->plugin), array(), $this->version);
     
     if ($bootstrap_icons) {
-      wp_enqueue_style('bootstrap-icons', plugins_url('/css/bootstrap-icons.min.css', $this->plugin), array(), $this->version);
+      wp_enqueue_style('bootstrap-icons', plugins_url('/assets/css/bootstrap-icons.min.css', $this->plugin), array(), $this->version);
     }
   }
   
@@ -70,7 +70,7 @@ class Enqueue {
    * @return void
    */
   private function enqueue_scripts() {
-    wp_enqueue_script('user-notifications', plugins_url('/js/frontend/main.js', $this->plugin), array('jquery', 'wp-i18n'), $this->version, true);
+    wp_enqueue_script('user-notifications', plugins_url('/assets/js/frontend/main.js', $this->plugin), array('jquery', 'wp-i18n'), $this->version, true);
     wp_localize_script(
       'user-notifications',
       'user_notifications_object',

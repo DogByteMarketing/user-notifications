@@ -1,128 +1,467 @@
-# Copyright (C) 2025 Dog Byte Marketing
+# Copyright (C) 2026 Dog Byte Marketing
 # This file is distributed under the GPL3.
 msgid ""
 msgstr ""
-"Project-Id-Version: User Notifications 1.0.4\n"
+"Project-Id-Version: User Notifications 1.1.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/user-notifications\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-03-08T10:09:14+00:00\n"
+"POT-Creation-Date: 2026-11-27T08:21:10+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.10.0\n"
+"X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: user-notifications\n"
 
 #. Plugin Name of the plugin
-#: user-notifications\user-notifications.php
+#: user-notifications.php
+#: includes/classes/Backend/Admin.php:241
 msgid "User Notifications"
 msgstr ""
 
 #. Plugin URI of the plugin
-#: user-notifications\user-notifications.php
+#: user-notifications.php
 msgid "https://www.dogbytemarketing.com/contact/"
 msgstr ""
 
 #. Description of the plugin
-#: user-notifications\user-notifications.php
+#: user-notifications.php
 msgid "Send notifications to your users."
 msgstr ""
 
 #. Author of the plugin
-#: user-notifications\user-notifications.php
+#: user-notifications.php
+#: includes/classes/Backend/Admin.php:334
 msgid "Dog Byte Marketing"
 msgstr ""
 
 #. Author URI of the plugin
-#: user-notifications\user-notifications.php
+#: user-notifications.php
 msgid "https://www.dogbytemarketing.com"
 msgstr ""
 
-#: includes/classes/Backend/Admin.php:25
+#: includes/classes/Backend/Admin.php:52
 msgid "User Notification Settings"
 msgstr ""
 
-#: includes/classes/Backend/Admin.php:25
+#: includes/classes/Backend/Admin.php:52
+#: includes/classes/Backend/Admin.php:64
 msgid "Settings"
 msgstr ""
 
-#: includes/classes/Backend/Admin.php:73
-msgid "Enabled?"
+#: includes/classes/Backend/Admin.php:65
+#: includes/classes/Backend/Admin.php:273
+msgid "Support"
 msgstr ""
 
-#: includes/classes/Backend/Admin.php:81
-msgid "Disable No Scroll?"
+#: includes/classes/Backend/Admin.php:139
+msgid "How can we help?"
 msgstr ""
 
-#: includes/classes/Backend/Admin.php:89
-msgid "BootStrap Icons"
+#: includes/classes/Backend/Admin.php:140
+#: includes/classes/Backend/Admin.php:271
+msgid "Get help with User Notifications, report issues, or share your feedback."
 msgstr ""
 
-#: includes/classes/Backend/Admin.php:97
-msgid "Order Notifications"
-msgstr ""
-
-#: includes/classes/Backend/Admin.php:105
-msgid "Read Tracking"
-msgstr ""
-
-#: includes/classes/Backend/Admin.php:113
-msgid "User Targeting"
-msgstr ""
-
-#: includes/classes/Backend/Admin.php:129
 #: includes/classes/Backend/Admin.php:143
-#: includes/classes/Backend/Admin.php:158
-#: includes/classes/Backend/Admin.php:173
-#: includes/classes/Backend/Admin.php:188
-#: includes/classes/Backend/Admin.php:203
-msgid "Yes"
+msgid "Get Support"
 msgstr ""
 
-#: includes/classes/Backend/Admin.php:145
-msgid "This will disable adding the no-scroll class after the notification icon is clicked as this could conflict with some themes."
+#: includes/classes/Backend/Admin.php:144
+msgid "Visit the WordPress support forum to ask questions or get help."
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:146
+msgid "Visit Support Forum"
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:150
+msgid "Report a Bug"
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:151
+msgid "Found something that isn't working as expected? Let us know."
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:153
+msgid "Report an Issue"
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:157
+msgid "Request a Feature"
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:158
+msgid "Have an idea to make User Notifications better?"
 msgstr ""
 
 #: includes/classes/Backend/Admin.php:160
-msgid "If you use another icon set or already use BootStrap Icons, disable this option."
+msgid "Share an Idea"
 msgstr ""
 
-#: includes/classes/Backend/Admin.php:175
-msgid "Send notifications on order status changes."
+#: includes/classes/Backend/Admin.php:166
+msgid "System Information"
 msgstr ""
 
-#: includes/classes/Backend/Admin.php:190
-msgid "This allows users to mark notifications as read. This will add the notification IDs to a list of IDs that have been read in the user's meta."
+#: includes/classes/Backend/Admin.php:169
+msgid "User Notifications version"
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:173
+msgid "WordPress version"
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:177
+msgid "PHP version"
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:181
+#: includes/classes/Backend/Admin.php:292
+msgid "Copied"
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:182
+msgid "Copy System Info"
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:186
+msgid "Enjoying User Notifications?"
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:187
+msgid "Rate User Notifications"
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:189
+msgid "1 star"
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:192
+msgid "2 stars"
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:195
+msgid "3 stars"
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:198
+msgid "4 stars"
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:201
+msgid "5 stars"
 msgstr ""
 
 #: includes/classes/Backend/Admin.php:205
-msgid "This will allow you to send notifications to specific users. This processes existing user data to fetch their ID and username."
+msgid "Leave a Review"
 msgstr ""
 
-#: includes/classes/Backend/Admin.php:222
-msgid "User Notifications Settings"
+#: includes/classes/Backend/Admin.php:210
+msgid "We strive to provide top-notch plugins"
 msgstr ""
 
-#: includes/classes/Backend/Admin.php:232
+#: includes/classes/Backend/Admin.php:211
+msgid "We'd love to try to make your experience better. Would you be willing to reach out directly to us for help?"
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:214
+msgid "Not Now"
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:217
+msgid "Reach Out"
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:246
+#: includes/classes/Backend/Admin.php:257
 msgid "General"
 msgstr ""
 
-#: includes/classes/Backend/Admin.php:238
+#: includes/classes/Backend/Admin.php:247
+#: includes/classes/Backend/Admin.php:255
+msgid "Turn notifications on and choose how the bell behaves."
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:249
+#: includes/classes/Backend/Admin.php:326
+msgid "Save Changes"
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:253
+msgid "Settings sections"
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:259
+msgid "Send notifications when order status changes."
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:261
 msgid "WooCommerce"
 msgstr ""
 
-#: includes/classes/Backend/Admin.php:244
+#: includes/classes/Backend/Admin.php:263
+msgid "Choose what visitor and user data notifications may store."
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:265
 msgid "Privacy"
 msgstr ""
 
-#: includes/classes/Backend/Admin.php:263
+#: includes/classes/Backend/Admin.php:267
+msgid "Control notifications added by other plugins."
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:269
+msgid "Advanced"
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:282
+msgid "Enabled?"
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:283
+msgid "Disable No Scroll?"
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:283
+msgid "This will disable adding the no-scroll class after the notification icon is clicked as this could conflict with some themes."
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:284
+msgid "BootStrap Icons"
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:284
+msgid "If you use another icon set or already use BootStrap Icons, disable this option."
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:288
+msgid "Display Your Notification Bell"
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:289
+msgid "Use the following shortcode in your navigation menu or a shortcode compatible area of your website."
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:293
+msgid "Copy"
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:296
+msgid "Using a custom icon library? You can specify your own icon classes using the class attribute."
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:302
+msgid "Order Notifications"
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:302
+msgid "Send notifications on order status changes."
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:308
 msgid "These options collect data from guests/users. Ensure you are in compliance with data protection regulations before activation. Proceed at your own risk."
 msgstr ""
 
+#: includes/classes/Backend/Admin.php:311
+msgid "Read Tracking"
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:311
+msgid "This allows users to mark notifications as read. This will add the notification IDs to a list of IDs that have been read in the user's meta."
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:312
+msgid "User Targeting"
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:312
+msgid "This will allow you to send notifications to specific users. This processes existing user data to fetch their ID and username."
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:318
+msgid "Disable Third-Party Notifications"
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:318
+msgid "Stop other plugins from adding notifications to the admin bell and the front end."
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:336
+msgid "Marketing Beyond Notifications"
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:337
+msgid "Connect with customers, boost engagement, and drive sales with effective digital marketing."
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:341
+msgid "Email marketing and automation"
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:342
+msgid "Social media marketing"
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:343
+msgid "Lead capture and conversion optimization"
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:346
+msgid "Let's Talk"
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:351
+msgid "(423) 724-8922"
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:354
+msgid "USA Based · Serving Businesses Nationwide"
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:357
+msgid "Other plugins"
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:359
+msgid "Explore Our Other Plugins"
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:365
+msgid "ProjectPlot"
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:366
+msgid "Simplify task management and keep your team organized directly within WordPress."
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:368
+msgid "Create and manage tasks with ease"
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:369
+msgid "Track task priorities and progress"
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:370
+msgid "Keep your team organized"
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:373
+#: includes/classes/Backend/Admin.php:387
+#: includes/classes/Backend/Admin.php:401
+msgid "Check Out Plugin"
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:379
+msgid "FAQ Schema Shortcode"
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:380
+msgid "Add FAQ sections with structured data so search engines can understand your content."
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:382
+msgid "Add FAQ sections with shortcodes"
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:383
+msgid "Generate JSON-LD structured data"
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:384
+msgid "Improve search visibility"
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:393
+msgid "Sync Mautic"
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:394
+msgid "Connect WordPress and WooCommerce activity to your Mautic contacts."
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:396
+msgid "Send leads into Mautic"
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:397
+msgid "Tag contacts from orders"
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:398
+msgid "Track checkout opt-ins"
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:408
+msgid "Show ProjectPlot"
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:409
+msgid "Show FAQ Schema Shortcode"
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:410
+msgid "Show Sync Mautic"
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:414
+msgid "Free & Open Source · WordPress.org"
+msgstr ""
+
+#: includes/classes/Backend/Admin_Bar.php:69
+#: includes/classes/Backend/Admin_Bar.php:78
+#: includes/classes/Backend/Admin_Bar.php:100
+#: includes/classes/Backend/Admin_Bar.php:105
 #: includes/classes/Frontend/Custom_Post_Type.php:24
 #: includes/classes/Frontend/Custom_Post_Type.php:35
+#: includes/classes/Frontend/UI.php:41
 msgid "Notifications"
+msgstr ""
+
+#. translators: %d: number of unread notifications
+#: includes/classes/Backend/Admin_Bar.php:109
+#: includes/classes/Frontend/UI.php:45
+#: assets/js/backend/admin-bar.js:137
+#: assets/js/frontend/main.js:137
+#, php-format,js-format
+msgid "%d new"
+msgid_plural "%d new"
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/classes/Backend/Admin_Bar.php:114
+#: includes/classes/Frontend/UI.php:50
+msgid "Your latest updates and offers."
+msgstr ""
+
+#: includes/classes/Backend/Admin_Bar.php:116
+#: includes/classes/Frontend/UI.php:52
+msgid "Close notifications"
+msgstr ""
+
+#: includes/classes/Backend/Admin_Bar.php:125
+#: includes/classes/Frontend/UI.php:61
+msgid "No more notifications"
+msgstr ""
+
+#: includes/classes/Backend/Admin_Bar.php:127
+#: includes/classes/Frontend/UI.php:64
+#: assets/js/frontend/main.js:169
+msgid "You have no notifications"
+msgstr ""
+
+#: includes/classes/Backend/Admin_Bar.php:132
+#: includes/classes/Frontend/UI.php:70
+#: assets/js/frontend/main.js:81
+#: assets/js/frontend/main.js:87
+msgid "Mark All Read"
+msgstr ""
+
+#: includes/classes/Backend/Admin_Bar.php:170
+#: includes/classes/Frontend/UI.php:176
+msgid "Mark as read"
 msgstr ""
 
 #: includes/classes/Frontend/Custom_Post_Type.php:25
@@ -163,31 +502,53 @@ msgstr ""
 msgid "All Notifications"
 msgstr ""
 
-#: includes/classes/Frontend/UI.php:33
-#: js/frontend/main.js:70
-#: js/frontend/main.js:76
-msgid "MARK ALL READ"
+#: includes/classes/Frontend/UI.php:189
+msgid "Dismiss"
 msgstr ""
 
-#: includes/classes/Frontend/UI.php:89
-msgid "You have no notifications"
-msgstr ""
-
-#: includes/classes/Frontend/UI.php:108
+#: includes/classes/Frontend/UI.php:217
+#: includes/classes/Frontend/UI.php:241
+#: includes/classes/Notifications.php:203
+#: includes/classes/Notifications.php:226
+#: includes/classes/Notifications.php:257
+#: includes/classes/Notifications.php:284
 msgid "Authentication failed."
 msgstr ""
 
-#: includes/classes/Frontend/UI.php:115
+#: includes/classes/Frontend/UI.php:224
+#: includes/classes/Frontend/UI.php:247
+#: includes/classes/Notifications.php:261
+#: includes/classes/Notifications.php:288
 msgid "Invalid user or password."
 msgstr ""
 
-#: includes/classes/Frontend/UI.php:120
+#: includes/classes/Frontend/UI.php:229
+#: includes/classes/Notifications.php:301
 msgid "Your notifications have been marked as read."
 msgstr ""
 
-#. Translators: %d is the order ID.
-#: includes/classes/Frontend/WooCommerce.php:67
+#: includes/classes/Frontend/UI.php:254
+#: includes/classes/Frontend/UI.php:260
+#: includes/classes/Notifications.php:209
+#: includes/classes/Notifications.php:232
+#: includes/classes/Notifications.php:267
+msgid "Notification not found."
+msgstr ""
+
+#: includes/classes/Frontend/UI.php:265
+#: includes/classes/Notifications.php:272
+msgid "Notification marked as read."
+msgstr ""
+
+#. translators: %d: order ID
+#: includes/classes/Frontend/WooCommerce.php:68
+#, php-format
 msgid "Order #%d has shipped"
+msgstr ""
+
+#: includes/classes/Notifications.php:214
+#: includes/classes/Notifications.php:245
+msgid "Notification dismissed."
 msgstr ""
 
 #: includes/classes/Utils.php:54
@@ -198,14 +559,42 @@ msgstr ""
 msgid "Error"
 msgstr ""
 
-#: js/backend/settings.js:44
+#: includes/classes/Utils.php:203
+msgid "Just now"
+msgstr ""
+
+#. translators: %d: number of minutes
+#: includes/classes/Utils.php:211
+#, php-format
+msgid "%d minute ago"
+msgid_plural "%d minutes ago"
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: %d: number of hours
+#: includes/classes/Utils.php:221
+#, php-format
+msgid "%d hour ago"
+msgid_plural "%d hours ago"
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/classes/Utils.php:227
+msgid "Yesterday"
+msgstr ""
+
+#: assets/js/backend/admin-bar.js:91
+#: assets/js/backend/admin-bar.js:118
+#: assets/js/frontend/main.js:83
+#: assets/js/frontend/main.js:118
+#: assets/js/frontend/main.js:176
+msgid "Unknown error"
+msgstr ""
+
+#: assets/js/backend/settings.js:368
 msgid "You need to enable User Targeting under the Privacy section before enabling Order Notifications."
 msgstr ""
 
-#: js/backend/settings.js:62
+#: assets/js/backend/settings.js:381
 msgid "Order Notifications requires User Targeting."
-msgstr ""
-
-#: js/frontend/main.js:72
-msgid "Unknown error"
 msgstr ""

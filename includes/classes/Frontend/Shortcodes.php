@@ -2,6 +2,7 @@
 
 namespace DogByteMarketing\User_Notifications\Frontend;
 
+use DogByteMarketing\User_Notifications\Notifications;
 use DogByteMarketing\User_Notifications\Utils;
 
 class Shortcodes {
@@ -67,6 +68,7 @@ class Shortcodes {
   private function render_notifications($atts) {
     $current_user_id    = get_current_user_id();
     $notification_count = Utils::get_user_notification_count($current_user_id);
+    $notification_count += count(Notifications::get_visible_notifications('frontend'));
     $class              = isset($atts['class']) ? sanitize_text_field($atts['class']) : '';
     $class_container    = isset($atts['class_container']) ? sanitize_text_field($atts['class_container']) : '';
 

@@ -1,8 +1,8 @@
 === User Notifications ===
 Contributors: dogbytemarketing
 Tags: notifications, alerts, marketing, user engagement, woocommerce
-Tested up to: 6.7
-Stable tag: 1.0.4
+Tested up to: 7.1
+Stable tag: 1.1.0
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -26,12 +26,53 @@ This plugin is ideal for websites and WooCommerce stores looking to improve user
 * Sidebar notifications for detailed views of messages.
 * Clean and modern design with customizable icons and styles.
 * Privacy settings
+* Admin toolbar bell for notifications from other plugins
+* Hook for other plugins to add dismissible notifications in the admin bar and on the frontend
+* Allows other plugins to integrate with User Notifications and send custom notifications, with an optional setting to disable notifications from external plugins.
+* Mark one notification as read, or mark all as read
+* Relative time on notification rows
+
+Want to help? Submit a PR on [Github](https://github.com/DogByteMarketing/user-notifications/).
 
 
 ## Roadmap
 
 * Add ability to manually send notifications to individual users
 * EDD integration
+
+
+## For developers
+
+Other plugins can add their own notifications when User Notifications is active. If this plugin is not active, the filter never runs.
+
+The filter is `user_notifications_notifications`. The second argument is the context: `admin_bar` or `frontend`.
+
+Each item needs an `id` and a `title`. `message` and `url` are optional. Every notification can be dismissed. `id` is stored when the visitor dismisses the item, so keep it stable. Ids are saved with `sanitize_key`, so use lowercase letters, numbers, hyphens, and underscores.
+
+The admin bell is always in the WordPress admin toolbar, next to the username. The badge shows the number of `admin_bar` notifications that have not been marked read. When that number is zero, the bell stays and the badge is hidden. Marking one read, or marking all read, keeps the item in the panel. An optional `time` unix timestamp sets the relative time. If it is left out, the first time that id appears is stored and reused.
+
+Frontend items are added to the notification sidebar and the badge. Frontend notifications must be enabled in the plugin settings. Logged-in dismissals are saved on the user account. Guest dismissals are saved in the `user_notifications_dismissed` cookie. The Advanced setting Disable Third-Party Notifications turns this filter off for both contexts.
+
+```php
+add_filter('user_notifications_notifications', 'my_plugin_notifications', 10, 2);
+
+function my_plugin_notifications($notifications, $context) {
+  if ('admin_bar' !== $context && 'frontend' !== $context) {
+    return $notifications;
+  }
+
+  $notifications[] = array(
+    'id'          => 'my-plugin-welcome',
+    'title'       => 'Welcome',
+    'message'     => 'You can dismiss this.',
+    'url'         => 'https://example.com',
+  );
+
+  return $notifications;
+}
+```
+
+Return the item for `admin_bar`, `frontend`, or both.
 
 
 ## GDPR
@@ -44,6 +85,10 @@ This plugin collects and stores certain data on your server to ensure proper fun
 
 * Storing plugin settings
 * Remembering which notices have been dismissed
+* Storing dismissed notification IDs from other plugins in user meta on the logged-in user's account (`_dismissed_user_notifications`)
+* Storing which admin notifications a logged-in user has marked read in user meta (`_read_admin_notifications`)
+* Storing the first time each admin notification id was seen, in a site option (`user_notifications_admin_seen`), so relative times stay the same
+* For guests, storing those dismissed notification IDs in a first-party cookie named `user_notifications_dismissed`. The cookie lasts one year, stays on this site, and is not shared with other sites. It only remembers which notifications a guest dismissed.
 
 
 == Installation ==
@@ -59,9 +104,20 @@ This plugin collects and stores certain data on your server to ensure proper fun
 2. General Settings
 3. WooCommerce Settings
 4. Privacy Settings
+5. Advanced Settings
 
 
 == Changelog ==
+
+= 1.1.0 =
+* Added: Admin toolbar bell next to the username for notifications from other plugins
+* Added: Filter so other plugins can add dismissible notifications to the admin bar and the frontend
+* Added: Guest cookie that remembers dismissed frontend notifications from other plugins
+* Added: Setting to turn off notifications from other plugins
+* Added: Mark one notification as read, and mark all as read
+* Added: Relative time on notification rows
+* Updated: Notification sidebar layout
+* Updated: Tested up to WordPress 7.1
 
 = 1.0.4 =
 * Added: Translations

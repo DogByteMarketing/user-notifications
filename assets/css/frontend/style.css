@@ -1,0 +1,327 @@
+.notification-container .notification-icon {
+  padding-right: 5px;
+}
+
+.notification-bubble {
+  position: relative;
+  background-color: #ff4d4d;
+  color: white;
+  padding: 6px 6px!important;
+  border-radius: 4px;
+  line-height: 1;
+  text-align: center;
+  min-width: 20px;
+}
+
+.notification-bubble::before {
+  content: "";
+  position: absolute;
+  top: 0px;
+  left: -6px;
+  width: 0;
+  height: 0;
+  margin-top: 4px;
+  border-style: solid solid solid none;
+  border-width: 10px 10px 10px medium;
+  border-top-color: rgba(0, 0, 0, 0) !important;
+  border-bottom-color: rgba(0, 0, 0, 0) !important;
+  border-color: #ff4d4d;
+}
+
+.notification-sidebar-container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  display: none;
+  flex-direction: column;
+  width: 420px;
+  max-width: 100%;
+  height: 100vh;
+  background-color: #fff;
+  box-shadow: -8px 0 24px rgba(0, 0, 0, 0.08);
+  z-index: 100001;
+  color: #1d2327;
+}
+
+body.admin-bar .notification-sidebar-container {
+  top: 32px;
+  height: calc(100vh - 32px);
+}
+
+.notification-sidebar-container.is-open {
+  display: flex;
+}
+
+.notification-sidebar-container .notification-sidebar {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+}
+
+.notification-panel__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 18px 12px;
+  border-bottom: 1px solid #ececec;
+}
+
+.notification-panel__title-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.notification-panel__title {
+  margin: 0;
+  color: #1d2327;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.notification-panel__badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: #f2f2f2;
+  color: #333;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.notification-panel__subtitle {
+  margin: 4px 0 0;
+  color: #8b919a;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.notification-sidebar-container .close-notifications {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #1d2327;
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.notification-sidebar-container .notifications {
+  flex: 1 1 auto;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+}
+
+.notification-sidebar-container .notification {
+  margin: 0;
+  border: 0;
+  border-bottom: 1px solid #ececec;
+  border-radius: 0;
+  background: #fff;
+}
+
+.notification-sidebar-container .notification.is-read {
+  background: #f4f5f6;
+}
+
+.notification-sidebar-container .notification-preview {
+  display: grid;
+  grid-template-columns: 16px minmax(0, 1fr) 42px;
+  grid-template-areas:
+    "dot title actions"
+    ". time actions";
+  align-items: center;
+  column-gap: 12px;
+  row-gap: 2px;
+  width: 100%;
+  padding: 11px 18px;
+  cursor: pointer;
+  text-align: left;
+}
+
+.notification-sidebar-container .notification.no-desc .notification-preview {
+  cursor: default;
+}
+
+.notification-item__title {
+  grid-area: title;
+  min-width: 0;
+  color: #1d2327;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+.notification-sidebar-container .notification.is-unread .notification-item__title {
+  font-weight: 700;
+}
+
+.notification-item__title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.notification-item__dot {
+  grid-area: dot;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #333;
+}
+
+.notification-item__time {
+  grid-area: time;
+  color: #9aa0a6;
+  font-size: 13px;
+  line-height: 1.3;
+}
+
+.notification-item__actions {
+  grid-area: actions;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  width: 42px;
+}
+
+.notification-item__read {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #6b7280;
+  font-size: 13px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.notification-item__read:hover,
+.notification-item__read:focus {
+  color: #1d2327;
+  outline: none;
+}
+
+.notification-item__chevron {
+  width: 12px;
+  color: #6b7280;
+  font-size: 12px;
+  text-align: center;
+}
+
+.notification-sidebar-container .notification.is-open .notification-item__chevron {
+  transform: rotate(180deg);
+}
+
+.notification-sidebar-container .notification-full {
+  display: none;
+  padding: 0 46px 16px 46px;
+  color: #3c434a;
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.notification-panel__end,
+.notification-sidebar-container .no-notifications {
+  margin: 0;
+  padding: 14px 16px;
+  color: #8b919a;
+  font-size: 14px;
+  text-align: center;
+}
+
+.notification-panel__footer {
+  flex: 0 0 auto;
+  padding: 12px 16px 14px;
+  border-top: 1px solid #ececec;
+  background: #fff;
+}
+
+.notification-sidebar-container .read-notifications {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 12px 16px;
+  border: 1px solid #d0d5dd;
+  border-radius: 999px;
+  background: #fff;
+  color: #1d2327;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.notification-sidebar-container .read-notifications:hover,
+.notification-sidebar-container .read-notifications:focus {
+  border-color: #98a2b3;
+  color: #1d2327;
+  outline: none;
+}
+
+@media screen and (max-width: 782px) {
+  body.admin-bar .notification-sidebar-container {
+    top: 46px;
+    height: calc(100vh - 46px);
+  }
+}
+
+.notification-sidebar-container .user-notifications-dismiss {
+  margin: 0 18px 12px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #6b7280;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+html.no-scroll,
+html.no-scroll body {
+  overflow: hidden !important;
+}
+
+html.no-scroll {
+  scrollbar-gutter: stable;
+}
+
+/* https://github.com/vineethtrv/css-loader */
+.loader {
+  width: 16px;
+  height: 16px;
+  border: 2px solid #333;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

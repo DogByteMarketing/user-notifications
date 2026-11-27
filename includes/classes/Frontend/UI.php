@@ -2,6 +2,7 @@
 
 namespace DogByteMarketing\User_Notifications\Frontend;
 
+use DogByteMarketing\User_Notifications\Notifications;
 use DogByteMarketing\User_Notifications\Utils;
 
 class UI {
@@ -14,6 +15,7 @@ class UI {
   public function init() {
     add_action('wp_footer', array($this, 'render_side_notification_bar'));
     add_action('wp_ajax_mark_notifications_read', array($this, 'mark_notifications_read'));
+    add_action('wp_ajax_mark_notification_read', array($this, 'mark_notification_read'));
   }
   
   /**
@@ -22,77 +24,184 @@ class UI {
    * @return void
    */
   public function render_side_notification_bar() {
-    $current_user_id = get_current_user_id();
+    $items = $this->get_panel_items();
+    $unread_count = 0;
+
+    foreach ($items as $item) {
+      if ($item['unread']) {
+        $unread_count++;
+      }
+    }
     ?>
-    <div class="notification-sidebar-container" style="display: none;">
+    <div class="notification-sidebar-container">
       <div class="notification-sidebar">
-        <div class="actions">
-          <div class="col-6">
-            <?php if (Utils::get_option('privacy', 'read_tracking') && is_user_logged_in()) : ?>
-              <a href="javascript:void(0);" class="read-notifications">
-                <?php echo __('MARK ALL READ', 'user-notifications'); ?>
-              </a>
-            <?php endif; ?>
+        <div class="notification-panel__header">
+          <div class="notification-panel__heading">
+            <div class="notification-panel__title-row">
+              <h2 class="notification-panel__title"><?php esc_html_e('Notifications', 'user-notifications'); ?></h2>
+              <?php if ($unread_count) : ?>
+                <span class="notification-panel__badge"><?php echo esc_html(sprintf(
+                  /* translators: %d: number of unread notifications */
+                  _n('%d new', '%d new', $unread_count, 'user-notifications'),
+                  $unread_count
+                )); ?></span>
+              <?php endif; ?>
+            </div>
+            <p class="notification-panel__subtitle"><?php esc_html_e('Your latest updates and offers.', 'user-notifications'); ?></p>
           </div>
-          <div class="col-6 end">
-            <a href="javascript:void(0);" class="close-notifications">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6" width="24" height="24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
-              </svg>
-            </a>
-          </div>
+          <button type="button" class="close-notifications" aria-label="<?php esc_attr_e('Close notifications', 'user-notifications'); ?>">
+            <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+          </button>
         </div>
         <div class="notifications">
-          <?php
-          $notifications = get_posts(array(
-            'post_type'      => 'user_notification',
-            'posts_per_page' => -1,
-            'post_status'    => 'publish',
-          ));
-          ?>
-          <?php if ($notifications) : ?>
-            <?php foreach($notifications as $notification) : ?>
-              <?php
-              $notification_id = $notification->ID;
-              $user_id = get_post_meta($notification_id, '_user_id', true);
-              ?>
-              <?php if (!$user_id || $user_id == $current_user_id) : ?>
-                <div class="notification">
-                  <div class="notification-preview-container">
-                    <div class="notification-preview<?php echo !$notification->post_content ? ' no-desc' : ''; ?>">
-                      <div class="col-<?php echo $notification->post_content ? '11' : '12'; ?>"><?php echo esc_html($notification->post_title); ?></div>
-                      <?php if ($notification->post_content) : ?>
-                        <div class="col-1 end">
-                          <a href="javascript:void(0);" class="expand-notification">
-                            <svg class="expand-icon active" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6" width="24" height="24">
-                              <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
-                            </svg>
-                            
-                            <svg class="expand-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6" width="24" height="24">
-                              <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" />
-                            </svg>
-                          </a>
-                        </div>
-                      <?php endif; ?>
-                    </div>
-                  </div>
-                  <?php if ($notification->post_content) : ?>
-                    <div class="notification-full" style="display: none;">
-                      <?php echo wp_kses_post($notification->post_content); ?>
-                    </div>
-                  <?php endif; ?>
-                </div>
-              <?php endif; ?>
+          <?php if ($items) : ?>
+            <?php foreach ($items as $item) : ?>
+              <?php $this->render_panel_item($item); ?>
             <?php endforeach; ?>
-          <?php else: ?>
+            <p class="notification-panel__end"><?php esc_html_e('No more notifications', 'user-notifications'); ?></p>
+          <?php else : ?>
             <div class="no-notifications">
-              <?php echo __('You have no notifications', 'user-notifications'); ?>
+              <?php esc_html_e('You have no notifications', 'user-notifications'); ?>
             </div>
           <?php endif; ?>
         </div>
+        <?php if ($items && is_user_logged_in()) : ?>
+          <div class="notification-panel__footer">
+            <button type="button" class="read-notifications"><?php esc_html_e('Mark All Read', 'user-notifications'); ?></button>
+          </div>
+        <?php endif; ?>
       </div>
     </div>
     <?php
+  }
+
+  /**
+   * Notifications that belong in the front-end panel.
+   *
+   * @return array
+   */
+  private function get_panel_items() {
+    $current_user_id = get_current_user_id();
+    $read_ids        = array();
+    $items           = array();
+
+    if ($current_user_id) {
+      $stored   = get_user_meta($current_user_id, '_read_notifications', true);
+      $read_ids = is_array($stored) ? array_map('intval', $stored) : array();
+    }
+
+    $notifications = get_posts(array(
+      'post_type'      => 'user_notification',
+      'posts_per_page' => -1,
+      'post_status'    => 'publish',
+      'orderby'        => 'date',
+      'order'          => 'DESC',
+    ));
+
+    foreach ($notifications as $notification) {
+      $user_id = (int) get_post_meta($notification->ID, '_user_id', true);
+
+      if ($user_id && $user_id !== (int) $current_user_id) {
+        continue;
+      }
+
+      $items[] = array(
+        'id'          => (int) $notification->ID,
+        'title'       => $notification->post_title,
+        'content'     => $notification->post_content,
+        'time'        => $this->notification_time_ago($notification),
+        'unread'      => !in_array((int) $notification->ID, $read_ids, true),
+        'url'         => '',
+        'external_id' => '',
+      );
+    }
+
+    foreach (Notifications::get_visible_notifications('frontend') as $notification) {
+      $items[] = array(
+        'id'          => 0,
+        'title'       => $notification['title'],
+        'content'     => $notification['message'],
+        'time'        => '',
+        'unread'      => true,
+        'url'         => $notification['url'],
+        'external_id' => $notification['id'],
+      );
+    }
+
+    return $items;
+  }
+
+  /**
+   * One row in the notification panel.
+   *
+   * @param  array $item Panel item.
+   * @return void
+   */
+  private function render_panel_item($item) {
+    $classes = array('notification');
+
+    if ($item['unread']) {
+      $classes[] = 'is-unread';
+    } else {
+      $classes[] = 'is-read';
+    }
+
+    if ($item['external_id']) {
+      $classes[] = 'user-notifications-external';
+    }
+
+    if (!$item['content']) {
+      $classes[] = 'no-desc';
+    }
+
+    $can_mark_read = !empty($item['id']) && is_user_logged_in();
+    ?>
+    <div class="<?php echo esc_attr(implode(' ', $classes)); ?>"<?php echo $item['external_id'] ? ' data-id="' . esc_attr($item['external_id']) . '"' : ''; ?><?php echo $can_mark_read ? ' data-notification-id="' . esc_attr($item['id']) . '"' : ''; ?>>
+      <div class="notification-preview">
+        <?php if ($item['unread']) : ?>
+          <span class="notification-item__dot" aria-hidden="true"></span>
+        <?php endif; ?>
+        <span class="notification-item__title">
+          <?php if ($item['url']) : ?>
+            <a href="<?php echo esc_url($item['url']); ?>"><?php echo esc_html($item['title']); ?></a>
+          <?php else : ?>
+            <?php echo esc_html($item['title']); ?>
+          <?php endif; ?>
+        </span>
+        <?php if ($item['time']) : ?>
+          <span class="notification-item__time"><?php echo esc_html($item['time']); ?></span>
+        <?php endif; ?>
+        <span class="notification-item__actions">
+          <?php if ($item['unread'] && $can_mark_read) : ?>
+            <button type="button" class="notification-item__read" aria-label="<?php esc_attr_e('Mark as read', 'user-notifications'); ?>">
+              <i class="fa-solid fa-eye" aria-hidden="true"></i>
+            </button>
+          <?php endif; ?>
+          <?php if ($item['content']) : ?>
+            <i class="fa-solid fa-chevron-down notification-item__chevron" aria-hidden="true"></i>
+          <?php endif; ?>
+        </span>
+      </div>
+      <?php if ($item['content']) : ?>
+        <div class="notification-full"><?php echo wp_kses_post($item['content']); ?></div>
+      <?php endif; ?>
+      <?php if ($item['external_id']) : ?>
+        <button type="button" class="user-notifications-dismiss"><?php esc_html_e('Dismiss', 'user-notifications'); ?></button>
+      <?php endif; ?>
+    </div>
+    <?php
+  }
+
+  /**
+   * Short relative time for a notification row.
+   *
+   * @param  WP_Post $notification Notification post.
+   * @return string
+   */
+  private function notification_time_ago($notification) {
+    $timestamp = get_post_timestamp($notification);
+
+    return Utils::time_ago($timestamp);
   }
   
   /**
@@ -118,6 +227,42 @@ class UI {
     Utils::mark_user_notifications_read($current_user_id);
 
     Utils::send_success(__('Your notifications have been marked as read.', 'user-notifications'));
+  }
+
+  /**
+   * Ajax method for logged in users to mark one notification read
+   *
+   * @return void
+   */
+  public function mark_notification_read() {
+    $nonce = isset($_POST['nonce']) ? sanitize_text_field(wp_unslash($_POST['nonce'])) : '';
+
+    if (!wp_verify_nonce($nonce, 'user-notifications-nonce')) {
+      Utils::send_error(__('Authentication failed.', 'user-notifications'), 401);
+    }
+
+    $current_user_id = get_current_user_id();
+
+    if (!$current_user_id) {
+      Utils::send_error(__('Invalid user or password.', 'user-notifications'), 401);
+    }
+
+    $notification_id = isset($_POST['id']) ? absint(wp_unslash($_POST['id'])) : 0;
+    $notification    = get_post($notification_id);
+
+    if (!$notification || 'user_notification' !== $notification->post_type || 'publish' !== $notification->post_status) {
+      Utils::send_error(__('Notification not found.', 'user-notifications'), 404);
+    }
+
+    $owner_id = (int) get_post_meta($notification_id, '_user_id', true);
+
+    if ($owner_id && $owner_id !== (int) $current_user_id) {
+      Utils::send_error(__('Notification not found.', 'user-notifications'), 404);
+    }
+
+    Utils::mark_user_notification_read($current_user_id, $notification_id);
+
+    Utils::send_success(__('Notification marked as read.', 'user-notifications'));
   }
   
 }

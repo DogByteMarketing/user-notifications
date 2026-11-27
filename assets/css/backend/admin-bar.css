@@ -1,0 +1,368 @@
+#wpadminbar #wp-admin-bar-user-notifications > .ab-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 8px;
+}
+
+#wpadminbar #wp-admin-bar-user-notifications .ab-icon,
+#wpadminbar #wp-admin-bar-user-notifications .ab-icon:before {
+  display: block;
+  float: none;
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  padding: 0;
+  line-height: 20px;
+  top: 0;
+  vertical-align: middle;
+}
+
+.user-notifications-admin-panel,
+.user-notifications-admin-panel *,
+.user-notifications-admin-panel *::before,
+.user-notifications-admin-panel *::after {
+  box-sizing: border-box;
+}
+
+.user-notifications-admin-panel {
+  position: fixed;
+  top: 32px;
+  right: 0;
+  z-index: 100000;
+  display: none;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 420px;
+  max-width: 100%;
+  height: calc(100vh - 32px);
+  background: #fff;
+  box-shadow: -8px 0 24px rgba(0, 0, 0, 0.16);
+  color: #1d2327;
+}
+
+.user-notifications-admin-panel.is-open {
+  display: flex;
+}
+
+.user-notifications-admin-panel__sidebar {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+}
+
+.user-notifications-admin-panel .notification-panel__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex: 0 0 auto;
+  gap: 16px;
+  padding: 16px 18px 12px;
+  overflow: hidden;
+  scrollbar-gutter: stable;
+  border-bottom: 1px solid #ececec;
+  background: #fff;
+}
+
+.user-notifications-admin-panel .notification-panel__title-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.user-notifications-admin-panel .notification-panel__title {
+  margin: 0;
+  color: #1d2327;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.user-notifications-admin-panel .notification-panel__badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: #f2f2f2;
+  color: #333;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.user-notifications-admin-panel .notification-panel__subtitle {
+  margin: 4px 0 0;
+  color: #8b919a;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.user-notifications-admin-panel .close-notifications {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 42px;
+  height: 32px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #1d2327;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: none;
+}
+
+.user-notifications-admin-panel .close-notifications .dashicons {
+  width: 16px;
+  height: 16px;
+  font-size: 16px;
+  line-height: 16px;
+}
+
+.user-notifications-admin-panel__notifications {
+  flex: 1 1 auto;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scrollbar-gutter: stable;
+}
+
+.user-notifications-admin-panel__item {
+  margin: 0;
+  border-bottom: 1px solid #ececec;
+  background: #fff;
+}
+
+.user-notifications-admin-panel__item.is-read {
+  background: #fbfbfb;
+}
+
+.user-notifications-admin-panel .notification-preview {
+  display: grid;
+  grid-template-columns: 16px minmax(0, 1fr) 42px;
+  grid-template-areas:
+    "dot title actions"
+    ". time actions";
+  align-items: center;
+  column-gap: 12px;
+  row-gap: 2px;
+  width: 100%;
+  padding: 11px 18px;
+  cursor: pointer;
+  text-align: left;
+}
+
+.user-notifications-admin-panel__item.no-desc .notification-preview {
+  cursor: default;
+}
+
+.user-notifications-admin-panel .notification-item__title {
+  grid-area: title;
+  min-width: 0;
+  color: #1d2327;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+.user-notifications-admin-panel__item.is-unread .notification-item__title {
+  font-weight: 700;
+}
+
+.user-notifications-admin-panel .notification-item__title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.user-notifications-admin-panel .notification-item__time {
+  grid-area: time;
+  color: #9aa0a6;
+  font-size: 13px;
+  line-height: 1.3;
+}
+
+.user-notifications-admin-panel .notification-item__dot {
+  grid-area: dot;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #333;
+}
+
+.user-notifications-admin-panel .notification-item__actions {
+  grid-area: actions;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  width: 42px;
+}
+
+.user-notifications-admin-panel .notification-item__read {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #6b7280;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: none;
+}
+
+.user-notifications-admin-panel .notification-item__read:hover,
+.user-notifications-admin-panel .notification-item__read:focus {
+  color: #1d2327;
+  outline: none;
+}
+
+.user-notifications-admin-panel .notification-item__read .dashicons,
+.user-notifications-admin-panel .notification-item__chevron {
+  width: 16px;
+  height: 16px;
+  font-size: 16px;
+  line-height: 16px;
+}
+
+.user-notifications-admin-panel .notification-item__chevron {
+  color: #6b7280;
+}
+
+.user-notifications-admin-panel__item.is-open .notification-item__chevron {
+  transform: rotate(180deg);
+}
+
+.user-notifications-admin-panel .notification-full {
+  display: none;
+  padding: 0 46px 16px 46px;
+  color: #3c434a;
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.user-notifications-admin-panel .notification-full p:last-child {
+  margin-bottom: 0;
+}
+
+.user-notifications-admin-panel__empty,
+.user-notifications-admin-panel .notification-panel__end {
+  margin: 0;
+  padding: 14px 16px;
+  color: #8b919a;
+  font-size: 14px;
+  text-align: center;
+}
+
+.user-notifications-admin-panel__footer {
+  flex: 0 0 auto;
+  padding: 12px 16px 14px;
+  border-top: 1px solid #ececec;
+  background: #fff;
+}
+
+.user-notifications-admin-panel__footer .user-notifications-mark-all-read {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 12px 16px;
+  border: 1px solid #d0d5dd;
+  border-radius: 999px;
+  background: #fff;
+  color: #1d2327;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.2;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: none;
+}
+
+.user-notifications-admin-panel__footer .user-notifications-mark-all-read:hover,
+.user-notifications-admin-panel__footer .user-notifications-mark-all-read:focus {
+  border-color: #98a2b3;
+  color: #1d2327;
+  outline: none;
+}
+
+html.no-scroll,
+html.no-scroll body {
+  overflow: hidden !important;
+}
+
+html.no-scroll {
+  scrollbar-gutter: stable;
+}
+
+#wpadminbar #wp-admin-bar-user-notifications .user-notifications-admin-bell__icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  margin-right: 4px;
+}
+
+#wpadminbar #wp-admin-bar-user-notifications .user-notifications-admin-count {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  display: block;
+  width: 14px;
+  height: 14px;
+  margin: 0;
+  padding: 0;
+  border-radius: 50%;
+  background-color: #d63638;
+  color: #fff;
+  font-size: 9px;
+  line-height: 14px;
+  text-align: center;
+}
+
+body.admin-color-blue #wpadminbar #wp-admin-bar-user-notifications .user-notifications-admin-count {
+  background-color: #e1a948;
+}
+
+body.admin-color-coffee #wpadminbar #wp-admin-bar-user-notifications .user-notifications-admin-count {
+  background-color: #9ea476;
+}
+
+body.admin-color-ectoplasm #wpadminbar #wp-admin-bar-user-notifications .user-notifications-admin-count {
+  background-color: #d46f15;
+}
+
+body.admin-color-light #wpadminbar #wp-admin-bar-user-notifications .user-notifications-admin-count {
+  background-color: #d64e07;
+}
+
+body.admin-color-midnight #wpadminbar #wp-admin-bar-user-notifications .user-notifications-admin-count {
+  background-color: #69a8bb;
+}
+
+body.admin-color-modern #wpadminbar #wp-admin-bar-user-notifications .user-notifications-admin-count {
+  background-color: #3858e9;
+}
+
+body.admin-color-ocean #wpadminbar #wp-admin-bar-user-notifications .user-notifications-admin-count {
+  background-color: #aa9d88;
+}
+
+body.admin-color-sunrise #wpadminbar #wp-admin-bar-user-notifications .user-notifications-admin-count {
+  background-color: #ccaf0b;
+}
+
+@media screen and (max-width: 782px) {
+  .user-notifications-admin-panel {
+    top: 46px;
+    height: calc(100vh - 46px);
+  }
+}

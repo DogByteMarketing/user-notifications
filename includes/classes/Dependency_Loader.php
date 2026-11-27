@@ -34,9 +34,21 @@ class Dependency_Loader {
    * @return void
    */
   public function init() {
+    $this->load_notifications();
     $this->load_frontend();
     $this->load_backend();
-    $this->load_translations();
+  }
+
+  /**
+   * Load notification hooks
+   *
+   * Loaded even when frontend notifications are disabled so the admin bell still works.
+   *
+   * @return void
+   */
+  public function load_notifications() {
+    $notifications = new Notifications();
+    $notifications->init();
   }
   
   /**
@@ -59,14 +71,4 @@ class Dependency_Loader {
     $backend_loader->init();
   }
   
-  /**
-   * Load Translations
-   *
-   * @return void
-   */
-  public function load_translations() {
-    $backend_loader = new Translations_Loader($this->plugin, $this->version);
-    $backend_loader->init();
-  }
-
 }
